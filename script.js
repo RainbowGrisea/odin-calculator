@@ -5,73 +5,95 @@ const backButton = document.querySelector('.back');
 const screenContent = document.querySelector('.screenContent');
 const operatorButton = document.querySelectorAll('.operator');
 
-let currentNum = null;
-let previousNum = null;
-let operator = '';
-let nextOperand = false;
+let secondOperand = null;
+let firstOperand = null;
+let secondOperator = '';
+let firstOperator = '';
 
-// Buttons input
-numButton.forEach((button) => {
-    button.addEventListener('click', () => {
-        if (nextOperand) {
-            screenContent.textContent = '';
-            nextOperand = false;
-        }
-        if (screenContent.textContent.length < 9) {
-            screenContent.textContent += button.textContent;
-        };
-        currentNum = parseFloat(screenContent.textContent);
-    })
-});
+// If there are no operators and no operands 
+//-> hitting a number button input the button and makes the current number equal to screen content
 
-// Clear screen and delete last number function
-clearButton.addEventListener('click', () => {
+// If there is a previous operand, no operators
+//-> hitting an operator button makes that operator the previous operator
+
+// If there is a previous operand and a previous operator 
+//-> hitting a number button makes the screen number the previous number, clears the screen and add the current number on the screen
+
+// If there is a previous and a current number, and a previous operator 
+//-> hitting an operator button makes the operation, the result becomes the previous number and is output on the screen, the current operator becomes the previous operator
+
+// Clear screen function
+clearButton.addEventListener('click', clearScreen);
+
+function clearScreen() {
     screenContent.textContent = '';
-    previousNum = null;
-    currentNum = null;
-    operator = '';
-    nextOperand = false;
-});
+    firstOperand = null;
+    secondOperand = null;
+    firstOperator = '';
+    secondOperator = '';
+}
 
+// Delete last number function
 backButton.addEventListener('click', () => {
     screenContent.textContent = screenContent.textContent.slice(0, screenContent.textContent.length - 1);
-    currentNum = Math.floor(currentNum / 10);
+    secondOperand = Math.floor(secondOperand / 10);
 });
 
-// Operator buttons
+// Number input
+numButton.forEach((button) => {
+    button.addEventListener('click', numInput);
+});
+
+function numInput() {
+    if (screenContent.textContent == 'ERROR') clearScreen();
+    if (firstOperand && secondOperator && !secondOperand) {
+        screenContent.textContent = '';
+        if (screenContent.textContent.length < 9) {
+            screenContent.textContent += this.textContent;
+        };
+        firstOperator = secondOperator;
+        secondOperator = '';
+    } else {
+        if (screenContent.textContent.length < 9) {
+            screenContent.textContent += this.textContent;
+        }
+    }
+    secondOperand = parseFloat(screenContent.textContent);
+};
+
+// Operator input
 operatorButton.forEach((button) => {
     button.addEventListener('click', operate);
 });
 
-// Enter a number, hit an operator -> \ number becomes previous number, operator variable gets the operator's value
-//Enter new number (screen gets cleared after hitting the first number), hit equal or another operator -> calculation is made with previous number, current number(text content of screen) and operator hit the time before) - the result is shown on the screen and it becomes previous number
-
-// Do the operation
 function operate() {
-    // If there are two operands and an operator is input
-    if (previousNum) {
-        currentNum = +screenContent.textContent;
-        switch (true) {
-            case operator === 'x':
-                screenContent.textContent = (previousNum * currentNum);
-                break;
-            case operator === '-':
-                screenContent.textContent = (previousNum - currentNum);
-                break;
-            case operator === '+':
-                screenContent.textContent = (previousNum + currentNum);
-                break;
-            case operator === '%':
-                screenContent.textContent = (previousNum / currentNum).toFixed(3);
-                break;
-        };
-        previousNum = +screenContent.textContent;
-
-        // If there is only one operand and an operator is input
-    } else {
-        previousNum = +screenContent.textContent;
+    secondOperator = this.textContent;
+    if (secondOperand === 0 && firstOperator === '%') {
+        clearScreen();
+        screenContent.textContent = 'ERROR';
     }
 
-    operator = this.textContent;
-    nextOperand = true;
+    if (firstOperand && firstOperator && secondOperand) {
+        switch (true) {
+            case firstOperator === 'x':
+                screenContent.textContent = (firstOperand * secondOperand);
+                break;
+            case firstOperator === '-':
+                screenContent.textContent = (firstOperand - secondOperand);
+                break;
+            case firstOperator === '+':
+                screenContent.textContent = (firstOperand + secondOperand);
+                break;
+            case firstOperator === '%':
+                screenContent.textContent = (firstOperand / secondOperand);
+                break;
+        };
+        firstOperand = +screenContent.textContent;
+        secondOperand = '';
+        firstOperator = secondOperator;
+    } else if (secondOperand) {
+        firstOperand = secondOperand;
+        secondOperand = '';
+        secondOperator = this.textContent;
+    }
 };

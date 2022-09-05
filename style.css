@@ -60,6 +60,14 @@ body {
     margin: 0.33rem;
 }
 
+.button:hover {
+    background-color: rgb(155, 155, 155)
+}
+
+.button:active {
+    background-color: rgb(64, 64, 64)
+}
+
 .clear,
 .back {
     width: 9.6rem;
