@@ -1,88 +1,88 @@
 body {
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    align-items: center;
-    background-color: rgb(25, 25, 25);
-    box-sizing: content-box;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  align-items: center;
+  background-color: rgb(25, 25, 25);
+  box-sizing: content-box;
 }
 
 .frame {
-    display: flex;
-    flex-direction: column;
-    width: 22rem;
-    height: 35rem;
-    text-align: center;
-    border: 3px solid black;
-    border-radius: 20px;
-    align-items: center;
-    padding: 0.2rem 0.2rem;
-    background-color: grey;
-    box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  width: 22rem;
+  height: 35rem;
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 20px;
+  align-items: center;
+  padding: 0.2rem 0.2rem;
+  background-color: grey;
+  box-sizing: content-box;
 }
 
 .screen {
-    width: 19.5rem;
-    height: 6rem;
-    border: 2px solid black;
-    border-radius: 10px;
-    margin: 1rem;
-    background-color: lightgrey;
-    display: flex;
-    align-items: flex-end;
-    justify-content: right;
-    font-size: 60px;
-    box-sizing: border-box;
-    padding-right: 15px;
+  width: 19.5rem;
+  height: 6rem;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 1rem;
+  background-color: lightgrey;
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
+  font-size: 60px;
+  box-sizing: border-box;
+  padding-right: 15px;
 }
 
 .screenCurrent {
-    padding-right: 20px;
+  padding-right: 20px;
 }
 
 .numPad {
-    display: flex;
-    width: 22rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  width: 22rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .button {
-    width: 4.5rem;
-    height: 4.5rem;
-    border-radius: 10px;
-    border: 2px black solid;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0.33rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 10px;
+  border: 2px black solid;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.33rem;
 }
 
 .button:hover {
-    background-color: rgb(155, 155, 155)
+  background-color: rgb(155, 155, 155);
 }
 
 .button:active {
-    background-color: rgb(64, 64, 64)
+  background-color: rgb(64, 64, 64);
 }
 
 .clear,
 .back {
-    width: 9.6rem;
-    height: 4.5rem;
-    border-radius: 10px;
-    border: 2px black solid;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0.33rem;
+  width: 9.6rem;
+  height: 4.5rem;
+  border-radius: 10px;
+  border: 2px black solid;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.33rem;
 }
 
 .clear {
-    background-color: lightcoral;
+  background-color: lightcoral;
 }
 
 .back {
-    background-color: lightblue;
+  background-color: lightblue;
 }
